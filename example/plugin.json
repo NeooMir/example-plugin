@@ -1,0 +1,9 @@
+{
+  "id": "example",
+  "name": "Пример плагина (Example Plugin)",
+  "version": "1.0.0",
+  "author": "NeoMir Team",
+  "description": "Базовый шаблон для создания плагинов к NeoMir. Демонстрирует работу с графическим интерфейсом GTK4/Adwaita и IPC-сокетом среды.",
+  "enabled": false,
+  "entry": "example_plugin.py"
+}
