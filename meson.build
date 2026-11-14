@@ -3,22 +3,23 @@ project('neomir-plugins',
   meson_version: '>= 0.60.0'
 )
 
-# Get base system directory via get_option
-plugins_install_dir = get_option('datadir') / 'neomir' / 'plugins'
+# Base plugins directory in system
+plugins_install_dir = get_option('datadir') / 'neomir' / 'plugins' / 'example'
 
+# 1. Install files directly to destination without tar
 install_data(
   'example/plugin.json',
-  install_dir: plugins_install_dir / 'example',
+  install_dir: plugins_install_dir,
   install_mode: 'rw-r--r--',
 )
 
 install_data(
   'example/example_plugin.py',
-  install_dir: plugins_install_dir / 'example',
+  install_dir: plugins_install_dir,
   install_mode: 'rwxr-xr-x',
 )
 
-# Packaging .plug installation archives using tar utility
+# 2. Standalone .plug packaging target (custom target, can be built via: ninja example.plug)
 tar_prog = find_program('tar', required: false)
 
 if tar_prog.found()
@@ -37,7 +38,5 @@ if tar_prog.found()
       'example_plugin.py',
     ],
     build_by_default: true,
-    install: true,
-    install_dir: plugins_install_dir,
   )
 endif
